@@ -22,6 +22,9 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
     <!-- tsParticles -->
     <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.12.0/tsparticles.slim.min.js"></script>
 
@@ -30,11 +33,11 @@
       :root {
         --bg-primary: #0a0a14;
         --bg-secondary: #111827;
-        --accent-gold: #d4af37;
-        --accent-gold-hover: #eacd69;
+        --accent-purple: #8a2be2;
+        --accent-magenta: #d946ef;
         --text-primary: #f0f0f5;
         --text-secondary: #a0a0b4;
-        --border-color: rgba(212, 175, 55, 0.2);
+        --border-color: rgba(138, 43, 226, 0.2);
       }
 
       html {
@@ -68,6 +71,16 @@
         border-bottom: 1px solid var(--border-color);
       }
 
+      .magic-text-gradient {
+        background: linear-gradient(
+          45deg,
+          var(--accent-purple),
+          var(--accent-magenta)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
       .btn-secondary {
         background-color: transparent;
         color: var(--text-primary);
@@ -78,19 +91,6 @@
       .btn-secondary:hover {
         background-color: var(--bg-secondary);
         border-color: var(--text-secondary);
-      }
-
-      .filter-btn {
-        background-color: var(--bg-secondary);
-        border: 1px solid #374151;
-        color: var(--text-secondary);
-        transition: all 0.3s ease;
-      }
-      .filter-btn:hover,
-      .filter-btn.active {
-        background-color: var(--accent-gold);
-        color: var(--bg-primary);
-        border-color: var(--accent-gold);
       }
 
       .gallery-item {
@@ -132,7 +132,7 @@
               href="index.html"
               class="font-display text-2xl font-bold text-white tracking-widest"
             >
-              ENCHANTIC<span class="text-accent-gold">A</span>T
+              ENCHANTIC<span class="text-accent-magenta">A</span>T
             </a>
             <a href="index.html" class="btn-secondary px-6 py-2 rounded-md">
               <i class="fas fa-arrow-left mr-2"></i>Voltar à Página Principal
@@ -147,73 +147,49 @@
           <div class="max-w-screen-xl mx-auto px-6 lg:px-8 text-center">
             <h1
               class="font-display text-4xl md:text-5xl font-bold text-white mb-4"
+              data-aos="fade-up"
             >
               Galeria de Projetos
             </h1>
-            <p class="max-w-2xl mx-auto text-text-secondary mb-12">
+            <p
+              class="max-w-2xl mx-auto text-text-secondary mb-12"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
               Explore uma seleção dos nossos trabalhos, onde a precisão técnica
               encontra a criatividade sem limites.
             </p>
-
-            <!-- Filter Buttons -->
-            <div
-              id="filter-buttons"
-              class="flex flex-wrap justify-center gap-4 mb-12"
-            >
-              <button
-                class="filter-btn active px-5 py-2 rounded-md"
-                data-filter="all"
-              >
-                Todos
-              </button>
-              <button
-                class="filter-btn px-5 py-2 rounded-md"
-                data-filter="prototipagem"
-              >
-                Prototipagem
-              </button>
-              <button
-                class="filter-btn px-5 py-2 rounded-md"
-                data-filter="arte"
-              >
-                Arte & Design
-              </button>
-              <button
-                class="filter-btn px-5 py-2 rounded-md"
-                data-filter="engenharia"
-              >
-                Engenharia
-              </button>
-            </div>
 
             <div
               id="gallery-grid"
               class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
             >
               <!-- Gallery Items -->
-              <div class="gallery-item" data-category="prototipagem">
+              <div class="gallery-item" data-aos="zoom-in">
                 <img
-                  src="pictures/001.jpg"
+                  src="pictures/016.jpg"
                   class="w-full h-80 object-cover"
                   alt="Protótipo de engenharia"
                 />
                 <div class="gallery-overlay">
                   <h3 class="font-display text-xl font-bold">
-                    Protótipo Funcional
+                    Suportes Alexas
                   </h3>
                 </div>
               </div>
-              <div class="gallery-item" data-category="engenharia">
+              <div class="gallery-item" data-aos="zoom-in" data-aos-delay="50">
                 <img
                   src="pictures/002.jpg"
                   class="w-full h-80 object-cover"
                   alt="Peça mecânica"
                 />
                 <div class="gallery-overlay">
-                  <h3 class="font-display text-xl font-bold">Peça Mecânica</h3>
+                  <h3 class="font-display text-xl font-bold">
+                    Impressões Diversas
+                  </h3>
                 </div>
               </div>
-              <div class="gallery-item" data-category="arte">
+              <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
                 <img
                   src="pictures/003.jpg"
                   class="w-full h-80 object-cover"
@@ -225,41 +201,37 @@
                   </h3>
                 </div>
               </div>
-              <div class="gallery-item" data-category="prototipagem">
+              <div class="gallery-item" data-aos="zoom-in" data-aos-delay="150">
                 <img
                   src="pictures/004.jpg"
                   class="w-full h-80 object-cover"
                   alt="Modelo arquitetónico"
                 />
                 <div class="gallery-overlay">
-                  <h3 class="font-display text-xl font-bold">
-                    Maquete Arquitetónica
-                  </h3>
+                  <h3 class="font-display text-xl font-bold">Porta Copos</h3>
                 </div>
               </div>
-              <div class="gallery-item" data-category="engenharia">
+              <div class="gallery-item" data-aos="zoom-in">
                 <img
                   src="pictures/005.jpg"
                   class="w-full h-80 object-cover"
                   alt="Componente automotivo"
                 />
                 <div class="gallery-overlay">
-                  <h3 class="font-display text-xl font-bold">
-                    Componente Automotivo
-                  </h3>
+                  <h3 class="font-display text-xl font-bold">Vaso de Flor</h3>
                 </div>
               </div>
-              <div class="gallery-item" data-category="arte">
+              <div class="gallery-item" data-aos="zoom-in" data-aos-delay="50">
                 <img
                   src="pictures/006.jpg"
                   class="w-full h-80 object-cover"
                   alt="Action figure"
                 />
                 <div class="gallery-overlay">
-                  <h3 class="font-display text-xl font-bold">Action Figure</h3>
+                  <h3 class="font-display text-xl font-bold">Abajur Moderno</h3>
                 </div>
               </div>
-              <div class="gallery-item" data-category="prototipagem">
+              <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
                 <img
                   src="pictures/007.jpg"
                   class="w-full h-80 object-cover"
@@ -267,35 +239,31 @@
                 />
                 <div class="gallery-overlay">
                   <h3 class="font-display text-xl font-bold">
-                    Componente Médico
+                    Suporte HeadSet
                   </h3>
                 </div>
               </div>
-              <div class="gallery-item" data-category="engenharia">
+              <div class="gallery-item" data-aos="zoom-in" data-aos-delay="150">
                 <img
                   src="pictures/008.jpg"
                   class="w-full h-80 object-cover"
                   alt="Estrutura complexa"
                 />
                 <div class="gallery-overlay">
-                  <h3 class="font-display text-xl font-bold">
-                    Estrutura Complexa
-                  </h3>
+                  <h3 class="font-display text-xl font-bold">Porta Caneta</h3>
                 </div>
               </div>
-              <div class="gallery-item" data-category="arte">
+              <div class="gallery-item" data-aos="zoom-in">
                 <img
                   src="pictures/009.jpg"
                   class="w-full h-80 object-cover"
                   alt="Joalheria customizada"
                 />
                 <div class="gallery-overlay">
-                  <h3 class="font-display text-xl font-bold">
-                    Joalheria Customizada
-                  </h3>
+                  <h3 class="font-display text-xl font-bold">Porta Joias</h3>
                 </div>
               </div>
-              <div class="gallery-item" data-category="engenharia">
+              <div class="gallery-item" data-aos="zoom-in" data-aos-delay="50">
                 <img
                   src="pictures/010.jpg"
                   class="w-full h-80 object-cover"
@@ -303,11 +271,11 @@
                 />
                 <div class="gallery-overlay">
                   <h3 class="font-display text-xl font-bold">
-                    Peça para Drone
+                    Abajur Abstrato
                   </h3>
                 </div>
               </div>
-              <div class="gallery-item" data-category="arte">
+              <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
                 <img
                   src="pictures/011.jpg"
                   class="w-full h-80 object-cover"
@@ -319,7 +287,7 @@
                   </h3>
                 </div>
               </div>
-              <div class="gallery-item" data-category="prototipagem">
+              <div class="gallery-item" data-aos="zoom-in" data-aos-delay="150">
                 <img
                   src="pictures/012.jpg"
                   class="w-full h-80 object-cover"
@@ -327,23 +295,21 @@
                 />
                 <div class="gallery-overlay">
                   <h3 class="font-display text-xl font-bold">
-                    Protótipo Ergonómico
+                    Brinquedo em Miniatura
                   </h3>
                 </div>
               </div>
-              <div class="gallery-item" data-category="engenharia">
+              <div class="gallery-item" data-aos="zoom-in">
                 <img
                   src="pictures/013.jpg"
                   class="w-full h-80 object-cover"
                   alt="Peça de reposição"
                 />
                 <div class="gallery-overlay">
-                  <h3 class="font-display text-xl font-bold">
-                    Peça de Reposição
-                  </h3>
+                  <h3 class="font-display text-xl font-bold">Dados RPG</h3>
                 </div>
               </div>
-              <div class="gallery-item" data-category="arte">
+              <div class="gallery-item" data-aos="zoom-in" data-aos-delay="50">
                 <img
                   src="pictures/014.jpg"
                   class="w-full h-80 object-cover"
@@ -351,11 +317,11 @@
                 />
                 <div class="gallery-overlay">
                   <h3 class="font-display text-xl font-bold">
-                    Escultura Abstrata
+                    Suporte Controles
                   </h3>
                 </div>
               </div>
-              <div class="gallery-item" data-category="prototipagem">
+              <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
                 <img
                   src="pictures/015.jpg"
                   class="w-full h-80 object-cover"
@@ -373,7 +339,7 @@
       </main>
 
       <!-- Footer -->
-      <footer class="py-16 bg-bg-primary border-t border-border-color">
+      <footer class="py-16 bg-bg-secondary border-t border-border-color">
         <div
           class="max-w-screen-xl mx-auto px-6 lg:px-8 text-center sm:text-left"
         >
@@ -381,18 +347,18 @@
             <div>
               <p class="font-display text-xl font-bold">EnchantiCat</p>
               <p class="text-text-secondary mt-2">
-                Precisão e Velocidade para a sua Inovação.
+                Transformando ideias em realidade com impressões 3D de qualidade
               </p>
             </div>
             <div class="flex justify-center space-x-6 mt-6 sm:mt-0">
               <a
-                href="#"
-                class="text-text-secondary hover:text-accent-gold transition-colors"
-                ><i class="fab fa-linkedin fa-lg"></i
+                href="https://wa.me/+5519998921093"
+                class="text-text-secondary hover:text-accent-magenta transition-colors"
+                ><i class="fab fa-whatsapp fa-lg"></i
               ></a>
               <a
-                href="#"
-                class="text-text-secondary hover:text-accent-gold transition-colors"
+                href="https://www.instagram.com/enchanticat?igsh=MXVsOXN3ZzNsc3d2Nw=="
+                class="text-text-secondary hover:text-accent-magenta transition-colors"
                 ><i class="fab fa-instagram fa-lg"></i
               ></a>
             </div>
@@ -400,15 +366,26 @@
           <div
             class="mt-8 pt-8 border-t border-border-color text-sm text-text-secondary text-center"
           >
-            <p>&copy; 2025 EnchantiCat. Todos os direitos reservados.</p>
+            <p>
+              Desenvolvido por WhisperingCode &copy; 2025 EnchantiCat. Todos os
+              direitos reservados.
+            </p>
           </div>
         </div>
       </footer>
     </div>
 
     <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+        // Inicializa AOS
+        AOS.init({
+          duration: 800,
+          easing: "ease-in-out",
+          once: true,
+        });
+
         // Inicializa tsParticles
         tsParticles.load("particles-js", {
           fullScreen: { enable: true, zIndex: -1 },
@@ -432,44 +409,6 @@
             },
           },
           detectRetina: true,
-        });
-
-        // Lógica do filtro da galeria
-        const filterButtons = document.querySelectorAll(
-          "#filter-buttons .filter-btn"
-        );
-        const galleryItems = document.querySelectorAll(
-          "#gallery-grid .gallery-item"
-        );
-
-        filterButtons.forEach((button) => {
-          button.addEventListener("click", () => {
-            // Remove a classe 'active' de todos os botões
-            filterButtons.forEach((btn) => btn.classList.remove("active"));
-            // Adiciona a classe 'active' ao botão clicado
-            button.classList.add("active");
-
-            const filter = button.getAttribute("data-filter");
-
-            galleryItems.forEach((item) => {
-              item.style.transform = "scale(0.9)";
-              item.style.opacity = "0";
-              setTimeout(() => {
-                if (
-                  filter === "all" ||
-                  item.getAttribute("data-category") === filter
-                ) {
-                  item.style.display = "block";
-                  setTimeout(() => {
-                    item.style.transform = "scale(1)";
-                    item.style.opacity = "1";
-                  }, 50);
-                } else {
-                  item.style.display = "none";
-                }
-              }, 300);
-            });
-          });
         });
       });
     </script>
