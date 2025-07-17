@@ -67,8 +67,10 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 100%;
-        height: 100%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
         object-fit: cover;
         transform: translate(-50%, -50%);
         z-index: -2;
@@ -170,6 +172,41 @@
         border-color: var(--accent-purple);
         box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
       }
+
+      /* Animação do Menu Hambúrguer */
+      .hamburger-line {
+        position: absolute;
+        left: 0;
+        width: 24px;
+        height: 2px;
+        background-color: var(--text-primary);
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      }
+      .hamburger-top {
+        transform: translateY(-7px);
+      }
+      .hamburger-bottom {
+        transform: translateY(7px);
+      }
+      .open .hamburger-top {
+        transform: rotate(45deg);
+      }
+      .open .hamburger-middle {
+        opacity: 0;
+      }
+      .open .hamburger-bottom {
+        transform: rotate(-45deg);
+      }
+
+      /* Animação do Menu Mobile */
+      #mobile-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-in-out;
+      }
+      #mobile-menu.open {
+        max-height: 300px; /* Ajuste este valor se tiver mais itens de menu */
+      }
     </style>
   </head>
   <body class="antialiased">
@@ -213,13 +250,15 @@
             >
             <button
               id="mobile-menu-button"
-              class="md:hidden text-gray-300 hover:text-white focus:outline-none"
+              class="md:hidden relative w-8 h-8 flex items-center justify-center focus:outline-none"
             >
-              <i class="fas fa-bars text-2xl"></i>
+              <span class="hamburger-line hamburger-top"></span>
+              <span class="hamburger-line hamburger-middle"></span>
+              <span class="hamburger-line hamburger-bottom"></span>
             </button>
           </div>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden bg-bg-secondary">
+        <div id="mobile-menu" class="md:hidden bg-bg-secondary">
           <div class="px-4 pt-2 pb-4 space-y-2">
             <a
               href="#about"
@@ -293,9 +332,9 @@
         </section>
 
         <!-- About Section -->
-        <section id="about" class="py-24 bg-bg-primary">
+        <section id="about" class="py-20 md:py-24 bg-bg-primary">
           <div
-            class="max-w-screen-xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center"
+            class="max-w-screen-xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-12 md:gap-16 items-center"
           >
             <div data-aos="fade-right">
               <img
@@ -324,13 +363,13 @@
         </section>
 
         <!-- Services Section -->
-        <section id="services" class="py-24 bg-bg-secondary">
+        <section id="services" class="py-20 md:py-24 bg-bg-secondary">
           <div class="max-w-screen-xl mx-auto px-6 lg:px-8 text-center">
             <span class="font-semibold text-accent-magenta" data-aos="fade-up"
               >As Nossas Capacidades</span
             >
             <h2
-              class="font-display text-3xl md:text-4xl font-bold text-white mt-2 mb-16"
+              class="font-display text-3xl md:text-4xl font-bold text-white mt-2 mb-12 md:mb-16"
               data-aos="fade-up"
               data-aos-delay="100"
             >
@@ -383,15 +422,15 @@
         </section>
 
         <!-- Process Section -->
-        <section id="process" class="py-24 bg-bg-primary">
+        <section id="process" class="py-20 md:py-24 bg-bg-primary">
           <div class="max-w-screen-xl mx-auto px-6 lg:px-8 text-center">
             <h2
-              class="font-display text-3xl md:text-4xl font-bold text-white mb-16"
+              class="font-display text-3xl md:text-4xl font-bold text-white mb-12 md:mb-16"
               data-aos="fade-up"
             >
               Do Ficheiro à Peça em 4 Passos Simples
             </h2>
-            <div class="grid md:grid-cols-4 gap-8 relative">
+            <div class="grid md:grid-cols-4 gap-12 md:gap-8 relative">
               <!-- Dotted line for desktop -->
               <div
                 class="hidden md:block absolute top-8 left-0 w-full h-px -translate-y-1/2"
@@ -477,10 +516,10 @@
         </section>
 
         <!-- Portfolio Section -->
-        <section id="portfolio" class="py-24 bg-bg-secondary">
+        <section id="portfolio" class="py-20 md:py-24 bg-bg-secondary">
           <div class="max-w-screen-xl mx-auto px-6 lg:px-8 text-center">
             <h2
-              class="font-display text-3xl md:text-4xl font-bold text-white mb-16"
+              class="font-display text-3xl md:text-4xl font-bold text-white mb-12 md:mb-16"
               data-aos="fade-up"
             >
               Projetos que Ganharam Forma
@@ -525,7 +564,7 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-24 bg-bg-primary">
+        <section id="contact" class="py-20 md:py-24 bg-bg-primary">
           <div class="max-w-4xl mx-auto px-6 lg:px-8">
             <div class="text-center">
               <h2
@@ -617,7 +656,10 @@
           <div
             class="mt-8 pt-8 border-t border-border-color text-sm text-text-secondary text-center"
           >
-            <p>&copy; 2025 EnchantiCat. Todos os direitos reservados.</p>
+            <p>
+              Desenvolvido por WhisperingCode &copy; 2025 EnchantiCat. Todos os
+              direitos reservados.
+            </p>
           </div>
         </div>
       </footer>
@@ -639,11 +681,13 @@
 
         if (mobileMenuButton && mobileMenu) {
           mobileMenuButton.addEventListener("click", () => {
-            mobileMenu.classList.toggle("hidden");
+            mobileMenu.classList.toggle("open");
+            mobileMenuButton.classList.toggle("open");
           });
           mobileMenuLinks.forEach((link) => {
             link.addEventListener("click", () => {
-              mobileMenu.classList.add("hidden");
+              mobileMenu.classList.remove("open");
+              mobileMenuButton.classList.remove("open");
             });
           });
         }
