@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EnchantiCat - Impressão 3D com Magia</title>
+
+    <!-- Google Fonts: Cinzel & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <style>
+      :root {
+        --bg-primary: #0a0a14;
+        --bg-secondary: #111827;
+        --accent-purple: #8a2be2;
+        --accent-magenta: #d946ef;
+        --text-primary: #f0f0f5;
+        --text-secondary: #a0a0b4;
+        --border-color: rgba(138, 43, 226, 0.2);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        overflow-x: hidden;
+      }
+
+      .font-display {
+        font-family: "Cinzel", serif;
+      }
+
+      .header {
+        background: rgba(10, 10, 20, 0.7);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .hero-section {
+        position: relative;
+        overflow: hidden;
+      }
+
+      #hero-video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: translate(-50%, -50%);
+        z-index: -2;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(10, 10, 20, 0.7);
+        z-index: -1;
+      }
+
+      .magic-text-gradient {
+        background: linear-gradient(
+          45deg,
+          var(--accent-purple),
+          var(--accent-magenta)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .btn-primary {
+        background: linear-gradient(
+          45deg,
+          var(--accent-purple),
+          var(--accent-magenta)
+        );
+        color: var(--text-primary);
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 15px rgba(217, 70, 239, 0.3);
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 0 30px rgba(217, 70, 239, 0.5);
+      }
+
+      .btn-secondary {
+        background-color: transparent;
+        color: var(--text-primary);
+        border: 1px solid #374151;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+      .btn-secondary:hover {
+        background-color: var(--bg-secondary);
+        border-color: var(--text-secondary);
+        color: white;
+      }
+
+      .card {
+        background-color: var(--bg-secondary);
+        border: 1px solid #374151;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .card:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, var(--accent-magenta));
+        transition: left 0.5s ease;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+        border-color: var(--border-color);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      }
+      .card:hover:before {
+        left: 100%;
+      }
+
+      .card .fas {
+        transition: transform 0.4s ease;
+      }
+      .card:hover .fas {
+        transform: scale(1.1) rotate(5deg);
+      }
+
+      .form-input {
+        background-color: #1f2937;
+        border: 1px solid #374151;
+        color: var(--text-primary);
+        transition: all 0.3s ease;
+      }
+      .form-input::placeholder {
+        color: var(--text-secondary);
+      }
+      .form-input:focus {
+        outline: none;
+        border-color: var(--accent-purple);
+        box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <div class="relative z-10">
+      <!-- Navigation -->
+      <header class="header fixed w-full z-50">
+        <nav class="max-w-screen-xl mx-auto px-6 lg:px-8">
+          <div class="flex items-center justify-between h-20">
+            <a
+              href="#home"
+              class="font-display text-2xl font-bold text-white tracking-widest"
+            >
+              ENCHANTIC<span class="text-accent-magenta">A</span>T
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+              <a
+                href="#about"
+                class="text-gray-300 hover:text-accent-magenta transition-colors duration-300"
+                >Sobre</a
+              >
+              <a
+                href="#services"
+                class="text-gray-300 hover:text-accent-magenta transition-colors duration-300"
+                >Serviços</a
+              >
+              <a
+                href="#process"
+                class="text-gray-300 hover:text-accent-magenta transition-colors duration-300"
+                >Processo</a
+              >
+              <a
+                href="galeria.html"
+                class="text-gray-300 hover:text-accent-magenta transition-colors duration-300"
+                >Portfólio</a
+              >
+            </div>
+            <a
+              href="#contact"
+              class="hidden md:inline-block btn-primary px-6 py-3 rounded-md"
+              >Solicitar Orçamento</a
+            >
+            <button
+              id="mobile-menu-button"
+              class="md:hidden text-gray-300 hover:text-white focus:outline-none"
+            >
+              <i class="fas fa-bars text-2xl"></i>
+            </button>
+          </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-bg-secondary">
+          <div class="px-4 pt-2 pb-4 space-y-2">
+            <a
+              href="#about"
+              class="mobile-menu-link text-gray-300 hover:text-accent-magenta block px-3 py-2 rounded-md"
+              >Sobre</a
+            >
+            <a
+              href="#services"
+              class="mobile-menu-link text-gray-300 hover:text-accent-magenta block px-3 py-2 rounded-md"
+              >Serviços</a
+            >
+            <a
+              href="#process"
+              class="mobile-menu-link text-gray-300 hover:text-accent-magenta block px-3 py-2 rounded-md"
+              >Processo</a
+            >
+            <a
+              href="galeria.html"
+              class="mobile-menu-link text-gray-300 hover:text-accent-magenta block px-3 py-2 rounded-md"
+              >Portfólio</a
+            >
+            <a
+              href="#contact"
+              class="mobile-menu-link text-gray-300 hover:text-accent-magenta block px-3 py-2 rounded-md"
+              >Contato</a
+            >
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <!-- Hero Section -->
+        <section
+          id="home"
+          class="hero-section min-h-screen flex items-center justify-center text-center"
+        >
+          <div class="hero-overlay"></div>
+          <video autoplay muted loop id="hero-video">
+            <source
+              src="./pictures/Video_Sem_Narração_Disponível.mp4"
+              type="video/mp4"
+            />
+            O seu navegador não suporta a tag de vídeo.
+          </video>
+          <div class="relative z-10 max-w-screen-md mx-auto px-6">
+            <h1
+              class="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight"
+              data-aos="fade-up"
+            >
+              Impressão 3D onde
+              <span class="magic-text-gradient">Magia e Criatividade</span>
+              Tomam Forma
+            </h1>
+            <div
+              class="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <a
+                href="#contact"
+                class="btn-primary px-8 py-4 rounded-lg text-lg"
+                >Solicitar Orçamento Rápido</a
+              >
+              <a
+                href="#services"
+                class="btn-secondary px-8 py-4 rounded-lg text-lg"
+                >Ver os Nossos Serviços</a
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-24 bg-bg-primary">
+          <div
+            class="max-w-screen-xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center"
+          >
+            <div data-aos="fade-right">
+              <img
+                src="pictures/001.jpg"
+                alt="Equipa da EnchantiCat a trabalhar num projeto"
+                class="rounded-2xl shadow-2xl shadow-black/30 w-full h-full object-cover"
+              />
+            </div>
+            <div data-aos="fade-left">
+              <span class="font-semibold text-accent-magenta"
+                >Nossa Guilda</span
+              >
+              <h2
+                class="font-display text-3xl md:text-4xl font-bold text-white mt-2 mb-6"
+              >
+                Forjando o Futuro, Camada por Camada
+              </h2>
+              <p class="text-lg text-text-secondary">
+                Na EnchantiCat, transformamos suas ideias em realidade através
+                da magia da impressão 3D. Com tecnologia de ponta e atenção aos
+                mínimos detalhes, criamos objetos personalizados com precisão e
+                qualidade. Nossa missão é encantar em cada camada impressa.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-24 bg-bg-secondary">
+          <div class="max-w-screen-xl mx-auto px-6 lg:px-8 text-center">
+            <span class="font-semibold text-accent-magenta" data-aos="fade-up"
+              >As Nossas Capacidades</span
+            >
+            <h2
+              class="font-display text-3xl md:text-4xl font-bold text-white mt-2 mb-16"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              Soluções Completas em Manufatura Aditiva
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+              <div
+                class="card p-8 text-left"
+                data-aos="fade-up"
+                data-aos-delay="200"
+              >
+                <i
+                  class="fas fa-wand-magic-sparkles text-accent-magenta text-3xl mb-4"
+                ></i>
+                <h3 class="text-xl font-bold mb-2">Prototipagem Rápida</h3>
+                <p class="text-text-secondary">
+                  Valide os seus designs rapidamente com protótipos funcionais e
+                  de alta fidelidade. Tecnologias FDM, SLA e SLS à sua
+                  disposição.
+                </p>
+              </div>
+              <div
+                class="card p-8 text-left"
+                data-aos="fade-up"
+                data-aos-delay="300"
+              >
+                <i class="fas fa-atom text-accent-magenta text-3xl mb-4"></i>
+                <h3 class="text-xl font-bold mb-2">Produção em Baixo Volume</h3>
+                <p class="text-text-secondary">
+                  Produza peças finais e personalizadas sem os custos de moldes.
+                  Ideal para produtos de nicho e produção sob demanda.
+                </p>
+              </div>
+              <div
+                class="card p-8 text-left"
+                data-aos="fade-up"
+                data-aos-delay="400"
+              >
+                <i
+                  class="fas fa-flask-vial text-accent-magenta text-3xl mb-4"
+                ></i>
+                <h3 class="text-xl font-bold mb-2">Consultoria DfAM</h3>
+                <p class="text-text-secondary">
+                  Otimize os seus projetos para manufatura aditiva (Design for
+                  Additive Manufacturing) com o apoio dos nossos especialistas.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Process Section -->
+        <section id="process" class="py-24 bg-bg-primary">
+          <div class="max-w-screen-xl mx-auto px-6 lg:px-8 text-center">
+            <h2
+              class="font-display text-3xl md:text-4xl font-bold text-white mb-16"
+              data-aos="fade-up"
+            >
+              Do Ficheiro à Peça em 4 Passos Simples
+            </h2>
+            <div class="grid md:grid-cols-4 gap-8 relative">
+              <!-- Dotted line for desktop -->
+              <div
+                class="hidden md:block absolute top-8 left-0 w-full h-px -translate-y-1/2"
+              >
+                <svg width="100%" height="2">
+                  <line
+                    x1="0"
+                    y1="1"
+                    x2="100%"
+                    y2="1"
+                    stroke-width="2"
+                    stroke-dasharray="8 8"
+                    class="stroke-border-color"
+                  />
+                </svg>
+              </div>
+              <div
+                class="relative z-10 text-center"
+                data-aos="fade-up"
+                data-aos-delay="100"
+              >
+                <div
+                  class="w-16 h-16 mx-auto rounded-full bg-accent-magenta flex items-center justify-center text-2xl font-bold text-white mb-4 shadow-[0_0_15px_var(--accent-magenta)]"
+                >
+                  1
+                </div>
+                <h3 class="font-semibold text-lg">Envie o seu Modelo</h3>
+                <p class="text-sm text-text-secondary">
+                  Faça o upload do seu ficheiro 3D (.STL, .OBJ, .STEP) no nosso
+                  formulário seguro.
+                </p>
+              </div>
+              <div
+                class="relative z-10 text-center"
+                data-aos="fade-up"
+                data-aos-delay="200"
+              >
+                <div
+                  class="w-16 h-16 mx-auto rounded-full bg-bg-secondary border-2 border-accent-magenta flex items-center justify-center text-2xl font-bold text-white mb-4"
+                >
+                  2
+                </div>
+                <h3 class="font-semibold text-lg">Análise e Orçamento</h3>
+                <p class="text-sm text-text-secondary">
+                  A nossa equipa analisa o seu modelo e envia um orçamento
+                  detalhado em poucas horas.
+                </p>
+              </div>
+              <div
+                class="relative z-10 text-center"
+                data-aos="fade-up"
+                data-aos-delay="300"
+              >
+                <div
+                  class="w-16 h-16 mx-auto rounded-full bg-bg-secondary border-2 border-accent-magenta flex items-center justify-center text-2xl font-bold text-white mb-4"
+                >
+                  3
+                </div>
+                <h3 class="font-semibold text-lg">Produção de Precisão</h3>
+                <p class="text-sm text-text-secondary">
+                  As suas peças são impressas nas nossas máquinas de última
+                  geração com rigoroso controlo de qualidade.
+                </p>
+              </div>
+              <div
+                class="relative z-10 text-center"
+                data-aos="fade-up"
+                data-aos-delay="400"
+              >
+                <div
+                  class="w-16 h-16 mx-auto rounded-full bg-bg-secondary border-2 border-accent-magenta flex items-center justify-center text-2xl font-bold text-white mb-4"
+                >
+                  4
+                </div>
+                <h3 class="font-semibold text-lg">Envio Rápido</h3>
+                <p class="text-sm text-text-secondary">
+                  Receba as suas peças prontas a usar, embaladas com segurança e
+                  enviadas para a sua morada.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="py-24 bg-bg-secondary">
+          <div class="max-w-screen-xl mx-auto px-6 lg:px-8 text-center">
+            <h2
+              class="font-display text-3xl md:text-4xl font-bold text-white mb-16"
+              data-aos="fade-up"
+            >
+              Projetos que Ganharam Forma
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div class="group card p-0 overflow-hidden" data-aos="zoom-in">
+                <img
+                  src="pictures/002.jpg"
+                  class="w-full h-96 object-cover group-hover:scale-105 transition-transform duration-500"
+                  alt="Peça de engenharia mecânica complexa"
+                />
+              </div>
+              <div
+                class="group card p-0 overflow-hidden"
+                data-aos="zoom-in"
+                data-aos-delay="100"
+              >
+                <img
+                  src="pictures/003.jpg"
+                  class="w-full h-96 object-cover group-hover:scale-105 transition-transform duration-500"
+                  alt="Protótipo de um produto de consumo"
+                />
+              </div>
+              <div
+                class="group card p-0 overflow-hidden"
+                data-aos="zoom-in"
+                data-aos-delay="200"
+              >
+                <img
+                  src="pictures/004.jpg"
+                  class="w-full h-96 object-cover group-hover:scale-105 transition-transform duration-500"
+                  alt="Modelo arquitetónico detalhado"
+                />
+              </div>
+            </div>
+            <div class="mt-12" data-aos="fade-up">
+              <a href="galeria.html" class="btn-secondary px-8 py-3 rounded-md"
+                >Ver Galeria Completa</a
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 bg-bg-primary">
+          <div class="max-w-4xl mx-auto px-6 lg:px-8">
+            <div class="text-center">
+              <h2
+                class="font-display text-3xl md:text-4xl font-bold text-white"
+                data-aos="fade-up"
+              >
+                Pronto para Materializar a sua Inovação?
+              </h2>
+              <p
+                class="mt-4 text-lg text-text-secondary mb-12"
+                data-aos="fade-up"
+                data-aos-delay="100"
+              >
+                Envie-nos os detalhes do seu projeto e o seu ficheiro 3D. A
+                nossa equipa entrará em contato com um orçamento gratuito e sem
+                compromisso.
+              </p>
+            </div>
+            <form
+              class="card p-8 md:p-12 rounded-2xl space-y-6"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div class="grid sm:grid-cols-2 gap-6">
+                <input
+                  type="text"
+                  placeholder="Nome Completo"
+                  class="form-input w-full p-4 rounded-lg"
+                />
+                <input
+                  type="email"
+                  placeholder="Email Corporativo"
+                  class="form-input w-full p-4 rounded-lg"
+                />
+              </div>
+              <textarea
+                placeholder="Descreva o seu projeto, incluindo material, quantidade e requisitos."
+                rows="6"
+                class="form-input w-full p-4 rounded-lg"
+              ></textarea>
+              <div>
+                <label
+                  for="file-upload"
+                  class="block text-sm font-medium text-text-secondary mb-2"
+                  >Envie o seu ficheiro 3D (Max 25MB):</label
+                >
+                <input
+                  type="file"
+                  id="file-upload"
+                  class="form-input w-full p-3 rounded-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-700 file:text-text-primary hover:file:bg-gray-600"
+                />
+              </div>
+              <button
+                type="submit"
+                class="btn-primary px-8 py-4 rounded-lg text-lg w-full"
+              >
+                Obter Orçamento
+              </button>
+            </form>
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="py-16 bg-bg-secondary border-t border-border-color">
+        <div
+          class="max-w-screen-xl mx-auto px-6 lg:px-8 text-center sm:text-left"
+        >
+          <div class="sm:flex sm:justify-between sm:items-center">
+            <div>
+              <p class="font-display text-xl font-bold">EnchantiCat</p>
+              <p class="text-text-secondary mt-2">
+                Precisão e Velocidade para a sua Inovação.
+              </p>
+            </div>
+            <div class="flex justify-center space-x-6 mt-6 sm:mt-0">
+              <a
+                href="#"
+                class="text-text-secondary hover:text-accent-magenta transition-colors"
+                ><i class="fab fa-linkedin fa-lg"></i
+              ></a>
+              <a
+                href="#"
+                class="text-text-secondary hover:text-accent-magenta transition-colors"
+                ><i class="fab fa-instagram fa-lg"></i
+              ></a>
+            </div>
+          </div>
+          <div
+            class="mt-8 pt-8 border-t border-border-color text-sm text-text-secondary text-center"
+          >
+            <p>&copy; 2025 EnchantiCat. Todos os direitos reservados.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({
+          duration: 800,
+          easing: "ease-in-out",
+          once: true,
+        });
+
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const mobileMenuLinks = document.querySelectorAll(".mobile-menu-link");
+
+        if (mobileMenuButton && mobileMenu) {
+          mobileMenuButton.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+          });
+          mobileMenuLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+              mobileMenu.classList.add("hidden");
+            });
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
