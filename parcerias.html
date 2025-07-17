@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parceria com Studio 3D Mamute - EnchantiCat</title>
+
+    <!-- Google Fonts: Cinzel & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <style>
+      :root {
+        --bg-primary: #0a0a14;
+        --bg-secondary: #111827;
+        --accent-purple: #8a2be2;
+        --accent-magenta: #d946ef;
+        --text-primary: #f0f0f5;
+        --text-secondary: #a0a0b4;
+        --border-color: rgba(138, 43, 226, 0.2);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        overflow-x: hidden;
+      }
+
+      .font-display {
+        font-family: "Cinzel", serif;
+      }
+
+      .header {
+        background: rgba(10, 10, 20, 0.7);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .magic-text-gradient {
+        background: linear-gradient(
+          45deg,
+          var(--accent-purple),
+          var(--accent-magenta)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .btn-secondary {
+        background-color: transparent;
+        color: var(--text-primary);
+        border: 1px solid #374151;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+      .btn-secondary:hover {
+        background-color: var(--bg-secondary);
+        border-color: var(--text-secondary);
+        color: white;
+      }
+
+      .card {
+        background-color: var(--bg-secondary);
+        border: 1px solid #374151;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+        border-color: var(--border-color);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .value-item .fa-check-circle {
+        transition: transform 0.3s ease;
+      }
+      .value-item:hover .fa-check-circle {
+        transform: scale(1.2);
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <div class="relative z-10">
+      <!-- Navigation -->
+      <header class="header fixed w-full z-50">
+        <nav class="max-w-screen-xl mx-auto px-6 lg:px-8">
+          <div class="flex items-center justify-between h-20">
+            <a
+              href="index.html"
+              class="font-display text-2xl font-bold text-white tracking-widest"
+            >
+              ENCHANTIC<span class="text-accent-magenta">A</span>T
+            </a>
+            <a href="index.html" class="btn-secondary px-6 py-2 rounded-md">
+              <i class="fas fa-arrow-left mr-2"></i>Voltar
+            </a>
+          </div>
+        </nav>
+      </header>
+
+      <main>
+        <!-- Hero Section -->
+        <section
+          id="parcerias-hero"
+          class="bg-bg-secondary pt-32 pb-20 text-center"
+        >
+          <div class="max-w-screen-md mx-auto px-6">
+            <h1
+              class="font-display text-4xl md:text-5xl font-bold text-white leading-tight"
+              data-aos="fade-up"
+            >
+              Nosso Parceiro:
+              <span class="magic-text-gradient">Studio 3D Mamute</span>
+            </h1>
+            <p
+              class="mt-6 text-lg text-text-secondary"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              A magia acontece quando grandes talentos se unem. Conheça a
+              empresa que trabalha lado a lado connosco para transformar
+              criações digitais em obras de arte tangíveis.
+            </p>
+          </div>
+        </section>
+
+        <!-- Quem Somos Section -->
+        <section id="partner-about" class="py-24 bg-bg-primary">
+          <div
+            class="max-w-screen-xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-12 md:gap-16 items-center"
+          >
+            <div data-aos="fade-right">
+              <img
+                src="pictures/studio3d.jpg"
+                alt="Oficina com corte a laser em madeira"
+                class="rounded-2xl shadow-2xl shadow-black/30 w-full h-full object-cover"
+              />
+            </div>
+            <div data-aos="fade-left">
+              <span class="font-semibold text-accent-magenta">Quem Somos</span>
+              <h2
+                class="font-display text-3xl md:text-4xl font-bold text-white mt-2 mb-6"
+              >
+                Studio 3D Mamute: Soluções Criativas
+              </h2>
+              <p class="text-lg text-text-secondary mb-4">
+                O Studio 3D Mamute é uma empresa especializada em soluções
+                personalizadas de brindes, comunicação visual e projetos
+                especiais. Com um portfólio diversificado que inclui tábuas de
+                corte, caixas de MDF, garrafas, copos térmicos e muito mais,
+                atendemos desde pequenos negócios até grandes empresas.
+              </p>
+              <p class="text-lg text-text-secondary">
+                Nosso foco está em entregar produtos de alta qualidade,
+                sustentáveis e inovadores, sempre alinhados às necessidades dos
+                nossos clientes para fortalecer a identidade da sua marca.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Missão e Valores Section -->
+        <section id="partner-mission" class="py-24 bg-bg-secondary">
+          <div
+            class="max-w-screen-xl mx-auto px-6 lg:px-8 grid lg:grid-cols-5 gap-12 md:gap-16 items-start"
+          >
+            <div class="lg:col-span-2" data-aos="fade-right">
+              <h3 class="font-display text-3xl font-bold text-white mb-4">
+                Nossa Missão
+              </h3>
+              <p class="text-lg text-text-secondary">
+                Transformar ideias em produtos exclusivos e personalizados que
+                agreguem valor às marcas e negócios de nossos clientes. Com foco
+                em inovação, qualidade e sustentabilidade, buscamos entregar
+                soluções criativas e eficientes em brindes, comunicação visual e
+                projetos especiais, sempre superando expectativas.
+              </p>
+            </div>
+            <div class="lg:col-span-3" data-aos="fade-left">
+              <h3 class="font-display text-3xl font-bold text-white mb-4">
+                Nossos Valores
+              </h3>
+              <div class="space-y-4">
+                <div class="value-item flex items-start space-x-4">
+                  <i class="fas fa-check-circle text-accent-magenta mt-1"></i>
+                  <div>
+                    <h4 class="font-semibold text-white">Qualidade</h4>
+                    <p class="text-text-secondary">
+                      Garantimos excelência em cada detalhe, utilizando
+                      materiais de alta durabilidade e acabamentos impecáveis.
+                    </p>
+                  </div>
+                </div>
+                <div class="value-item flex items-start space-x-4">
+                  <i class="fas fa-check-circle text-accent-magenta mt-1"></i>
+                  <div>
+                    <h4 class="font-semibold text-white">Sustentabilidade</h4>
+                    <p class="text-text-secondary">
+                      Valorizamos práticas sustentáveis e materiais ecológicos
+                      que minimizam o impacto ambiental.
+                    </p>
+                  </div>
+                </div>
+                <div class="value-item flex items-start space-x-4">
+                  <i class="fas fa-check-circle text-accent-magenta mt-1"></i>
+                  <div>
+                    <h4 class="font-semibold text-white">
+                      Compromisso com o Cliente
+                    </h4>
+                    <p class="text-text-secondary">
+                      Colocamos as necessidades dos clientes em primeiro lugar,
+                      com atendimento personalizado e soluções sob medida.
+                    </p>
+                  </div>
+                </div>
+                <div class="value-item flex items-start space-x-4">
+                  <i class="fas fa-check-circle text-accent-magenta mt-1"></i>
+                  <div>
+                    <h4 class="font-semibold text-white">
+                      Inovação e Responsabilidade
+                    </h4>
+                    <p class="text-text-secondary">
+                      Buscamos novas tecnologias e agimos com transparência e
+                      ética em todas as nossas relações.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Diferencial Section -->
+        <section id="partner-diferencial" class="py-24 bg-bg-primary">
+          <div class="max-w-screen-xl mx-auto px-6 lg:px-8 text-center">
+            <h2
+              class="font-display text-3xl md:text-4xl font-bold text-white mt-2 mb-16"
+              data-aos="fade-up"
+            >
+              Nosso Diferencial: Por que escolher o Studio 3D Mamute?
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+              <div
+                class="card p-8 text-left"
+                data-aos="fade-up"
+                data-aos-delay="200"
+              >
+                <i class="fas fa-star text-accent-magenta text-3xl mb-4"></i>
+                <h3 class="text-xl font-bold mb-2">Soluções Exclusivas</h3>
+                <p class="text-text-secondary">
+                  Personalizações sob medida que destacam sua marca, unindo
+                  tecnologia de ponta com materiais de alta qualidade como
+                  madeira maciça, MDF e Pinus.
+                </p>
+              </div>
+              <div
+                class="card p-8 text-left"
+                data-aos="fade-up"
+                data-aos-delay="300"
+              >
+                <i class="fas fa-leaf text-accent-magenta text-3xl mb-4"></i>
+                <h3 class="text-xl font-bold mb-2">Abordagem Sustentável</h3>
+                <p class="text-text-secondary">
+                  Cada projeto é alinhado com práticas ecológicas, garantindo
+                  excelência sem abrir mão da responsabilidade ambiental.
+                </p>
+              </div>
+              <div
+                class="card p-8 text-left"
+                data-aos="fade-up"
+                data-aos-delay="400"
+              >
+                <i class="fas fa-bolt text-accent-magenta text-3xl mb-4"></i>
+                <h3 class="text-xl font-bold mb-2">Atendimento Ágil</h3>
+                <p class="text-text-secondary">
+                  Atendimento personalizado e entrega rápida para entender as
+                  necessidades de cada cliente, seja um pequeno negócio ou uma
+                  multinacional.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="py-16 bg-bg-secondary border-t border-border-color">
+        <div
+          class="max-w-screen-xl mx-auto px-6 lg:px-8 text-center sm:text-left"
+        >
+          <div class="sm:flex sm:justify-between sm:items-center">
+            <div>
+              <p class="font-display text-xl font-bold">EnchantiCat</p>
+              <p class="text-text-secondary mt-2">
+                Precisão e Velocidade para a sua Inovação.
+              </p>
+            </div>
+            <div class="flex justify-center space-x-6 mt-6 sm:mt-0">
+              <a
+                href="https://wa.me/+5519998921093"
+                class="text-text-secondary hover:text-accent-magenta transition-colors"
+                ><i class="fab fa-whatsapp fa-lg"></i
+              ></a>
+              <a
+                href="https://www.instagram.com/enchanticat?igsh=MXVsOXN3ZzNsc3d2Nw=="
+                class="text-text-secondary hover:text-accent-magenta transition-colors"
+                ><i class="fab fa-instagram fa-lg"></i
+              ></a>
+            </div>
+          </div>
+          <div
+            class="mt-8 pt-8 border-t border-border-color text-sm text-text-secondary text-center"
+          >
+            <p>
+              Desenvolvido por WhisperingCode &copy; 2025 EnchantiCat. Todos os
+              direitos reservados.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({
+          duration: 800,
+          easing: "ease-in-out",
+          once: true,
+        });
+      });
+    </script>
+  </body>
+</html>
